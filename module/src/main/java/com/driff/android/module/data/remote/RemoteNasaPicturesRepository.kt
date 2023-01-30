@@ -1,7 +1,7 @@
 package com.driff.android.module.data.remote
 
 import com.driff.android.module.data.datasource.NasaPicturesRemoteDataSource
-import com.driff.android.module.data.entities.app.PictureOfDay
+import com.driff.android.module.data.repository.entities.PictureOfDay
 import com.driff.android.module.data.repository.NasaPicturesRepository
 import kotlinx.coroutines.sync.Mutex
 

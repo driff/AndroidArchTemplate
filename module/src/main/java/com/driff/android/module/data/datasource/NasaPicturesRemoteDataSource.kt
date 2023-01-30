@@ -1,7 +1,8 @@
 package com.driff.android.module.data.datasource
 
 import com.driff.android.module.data.api.NasaPicturesApi
-import com.driff.android.module.data.remote.model.RemotePictureOfDay
+import com.driff.android.module.data.remote.model.RemoteNasaPicture
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
@@ -10,12 +11,19 @@ class NasaPicturesRemoteDataSource constructor(
     private val ioDispatcher: CoroutineDispatcher
 ) {
 
-    suspend fun fetchPictureOfTheDay(): RemotePictureOfDay =
+    suspend fun fetchPictureOfTheDay(): Result<RemoteNasaPicture> =
         withContext(ioDispatcher) {
-            nasaPicturesApi.fetchPictureOfTheDay()
+            try {
+                val result = nasaPicturesApi.fetchPictureOfTheDay()
+                return@withContext Result.success(result)
+            } catch (e: Exception) {
+                e.takeUnless { e is CancellationException }?.let {
+                    return@withContext Result.failure(e)
+                }?: throw e
+            }
         }
 
-    suspend fun fetchPictureOfTheDay(from: String, to: String): List<RemotePictureOfDay> =
+    suspend fun fetchPicturesFromDate(from: String, to: String): List<RemoteNasaPicture> =
         withContext(ioDispatcher) {
             nasaPicturesApi.fetchPicturesFromRange(from, to)
         }

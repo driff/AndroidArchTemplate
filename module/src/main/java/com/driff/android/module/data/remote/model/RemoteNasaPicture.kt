@@ -2,7 +2,7 @@ package com.driff.android.module.data.remote.model
 
 import kotlinx.serialization.SerialName
 
-data class RemotePictureOfDay(
+data class RemoteNasaPicture(
 	val date: String,
 	val copyright: String,
 	@SerialName("media_type")

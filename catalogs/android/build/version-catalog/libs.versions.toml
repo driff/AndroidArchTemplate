@@ -32,6 +32,7 @@ mockk-version = "1.13.4"
 multidex-version = "2.0.1"
 navigation-version = "2.5.3"
 robolectric-version = "4.9.2"
+slf4j-version = "2.0.6"
 turbine-version = "0.12.1"
 
 [libraries]
@@ -76,6 +77,7 @@ ktor-core = {group = "io.ktor", name = "ktor-client-core", version.ref = "ktor-v
 ktor-logging = {group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor-version" }
 ktor-okhttp = {group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor-version" }
 ktor-serialization = {group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
+log4j-test = {group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j-version" }
 logback = {group = "ch.qos.logback", name = "logback-classic", version = "1.2.11" }
 tests-core = {group = "androidx.test", name = "core", version.ref = "androidx-test-core-version" }
 tests-core-ktx = {group = "androidx.test", name = "core-ktx", version.ref = "androidx-test-core-version" }

@@ -5,8 +5,6 @@ plugins {
     alias libs.plugins.hilt.android
 }
 
-
-
 android {
     namespace 'com.driff.android.modulartemplate'
     compileSdk 33
@@ -17,7 +15,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
+        buildConfigField "String", "NASA_API_KEY", "${System.getenv("NASA_API_KEY")}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -44,5 +42,5 @@ dependencies {
     kapt libs.di.hilt.compiler
     testImplementation libs.bundles.kotlin.testing.tools
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
