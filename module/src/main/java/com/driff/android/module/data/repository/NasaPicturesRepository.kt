@@ -1,6 +1,6 @@
 package com.driff.android.module.data.repository
 
-import com.driff.android.module.data.entities.app.PictureOfDay
+import com.driff.android.module.data.repository.entities.PictureOfDay
 
 interface NasaPicturesRepository {
 

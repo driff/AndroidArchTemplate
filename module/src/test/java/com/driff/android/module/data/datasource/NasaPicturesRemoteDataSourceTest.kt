@@ -1,7 +1,7 @@
 package com.driff.android.module.data.datasource
 
 import com.driff.android.module.data.api.NasaPicturesApi
-import com.driff.android.module.data.datasource.RemoteDataDummies.successRemoteNasaPicture
+import com.driff.android.module.data.RemoteDataDummies.successRemoteNasaPicture
 import com.driff.android.module.data.exception.BadRequestException
 import io.mockk.coEvery
 import io.mockk.coVerify

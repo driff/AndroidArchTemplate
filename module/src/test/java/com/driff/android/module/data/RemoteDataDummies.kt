@@ -1,4 +1,4 @@
-package com.driff.android.module.data.datasource
+package com.driff.android.module.data
 
 import com.driff.android.module.data.remote.model.RemoteNasaPicture
 
