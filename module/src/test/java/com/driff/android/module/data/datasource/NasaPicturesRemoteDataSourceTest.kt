@@ -13,8 +13,7 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.*
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
 class NasaPicturesRemoteDataSourceTest {
@@ -65,6 +64,19 @@ class NasaPicturesRemoteDataSourceTest {
     }
 
     @Test
+    fun successShouldReturnData() = runTest {
+        // GIVEN remoteDataSource instance
+        val dispatcher = StandardTestDispatcher(testScheduler)
+        val dataSource = NasaPicturesRemoteDataSource(nasaApi, dispatcher)
+        // WHEN fetchPictureOfTheDay is invoked
+        // AND Api Answers with success
+        coEvery { nasaApi.fetchPictureOfTheDay() } coAnswers { successRemoteNasaPicture }
+        val response = dataSource.fetchPictureOfTheDay()
+        // THEN it should return a Success Result
+        assertNotNull(response.getOrNull())
+    }
+
+    @Test
     fun shouldReturnFailure() = runTest {
         // GIVEN remoteDataSource instance
         val dispatcher = StandardTestDispatcher(testScheduler)
@@ -79,5 +91,20 @@ class NasaPicturesRemoteDataSourceTest {
         assertEquals(exceptionMessage, response.exceptionOrNull()?.message)
     }
 
+    @Test
+    fun shouldReturnThrownException() = runTest {
+        // GIVEN remoteDataSource instance
+        val dispatcher = StandardTestDispatcher(testScheduler)
+        val dataSource = NasaPicturesRemoteDataSource(nasaApi, dispatcher)
+        // WHEN fetchPictureOfTheDay is invoked
+        // AND Api Answers with exception
+        val exceptionMessage = "Date must be between Jun 16, 1995 and Jan 29, 2023"
+        val exception = BadRequestException(exceptionMessage)
+        coEvery { nasaApi.fetchPictureOfTheDay() } throws exception
+        val response = dataSource.fetchPictureOfTheDay()
+        // THEN it should return the thrown exception
+        assertTrue(response.exceptionOrNull() is BadRequestException)
+        assertEquals(exception, response.exceptionOrNull())
+    }
 
 }
