@@ -184,7 +184,8 @@ catalog {
                 "cashapp-turbine",
                 "tests-mockk",
                 "tests-mockk-jvm",
-                "tests-coroutines"
+                "tests-coroutines",
+                "log4j-test"
         ])
 
         bundle("android-jvm-testing", [

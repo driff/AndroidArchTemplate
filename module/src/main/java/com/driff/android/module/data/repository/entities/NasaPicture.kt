@@ -1,6 +1,6 @@
 package com.driff.android.module.data.repository.entities
 
-data class PictureOfDay(
+data class NasaPicture(
     val date: String,
     val mediaType: String,
     val hdurl: String,

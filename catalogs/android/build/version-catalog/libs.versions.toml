@@ -114,7 +114,7 @@ android-material-design-compose = ["android-material", "android-material3", "and
 android-testing = ["tests-core", "tests-core-ktx", "tests-ktor-client", "tests-ui", "tests-rules", "tests-runner", "android-lifecycle-testing", "tests-spresso-contrib", "tests-spresso-resource", "tests-spresso-idling-net", "tests-spresso-idling", "tests-spresso-core", "androidx-arch-core-testing"]
 android-testing-extra = ["tests-ui-tooling", "tests-ui-manifest"]
 hilt-testing = ["tests-hilt-android"]
-kotlin-testing-tools = ["cashapp-turbine", "tests-mockk", "tests-mockk-jvm", "tests-coroutines"]
+kotlin-testing-tools = ["cashapp-turbine", "tests-mockk", "tests-mockk-jvm", "tests-coroutines", "log4j-test"]
 kotlin-tooling = ["kotlin-reflect", "kotlin-stdlib", "kotlin-logging"]
 ktor-android = ["ktor-core", "ktor-okhttp", "ktor-android", "ktor-logging", "ktor-content-negotiation", "ktor-serialization", "ktor-client-res"]
 
