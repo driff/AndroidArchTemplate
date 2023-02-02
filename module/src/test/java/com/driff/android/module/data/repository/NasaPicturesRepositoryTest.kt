@@ -110,4 +110,20 @@ class RemoteNasaPicturesRepositoryTest: BaseTestSetup() {
         coVerify(exactly = 2) { dataSource.fetchPictureOfTheDay() }
     }
 
+    @Test
+    fun shouldReturnFailure() = runTest {
+        // GIVEN repository instance
+        val modifiedDataSourceResponse = Result.success(
+            successRemoteNasaPicture.copy("2023-01-30")
+        )
+        val repository = NasaPicturesRepository(dataSource)
+        // WHEN fetchPictureOfDay is invoked
+        // AND datasource responds with exception
+        coEvery { dataSource.fetchPictureOfTheDay() } throws NullPointerException("Something not null was null")
+        // AND cache is empty
+        val result = repository.fetchNasaPictureOfTheDay()
+        // THEN result should be a failure
+        assertTrue(result.isFailure)
+    }
+
 }
