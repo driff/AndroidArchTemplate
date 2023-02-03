@@ -1,8 +1,10 @@
-package com.driff.android.module.data.datasource
+package com.driff.android.module.data.remote.datasource
 
+import com.driff.android.module.BaseTestSetup
 import com.driff.android.module.data.api.NasaPicturesApi
 import com.driff.android.module.data.RemoteDataDummies.successRemoteNasaPicture
 import com.driff.android.module.data.exception.BadRequestException
+import com.driff.android.module.data.remote.datasource.NasaPicturesRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
@@ -16,8 +18,7 @@ import org.junit.*
 import org.junit.Assert.*
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
-class NasaPicturesRemoteDataSourceTest {
-    private val mainThreadSurrogate = newSingleThreadContext("UI thread")
+class NasaPicturesRemoteDataSourceTest: BaseTestSetup() {
 
     @get:Rule
     val mockkRule = MockKRule(this)
@@ -28,16 +29,6 @@ class NasaPicturesRemoteDataSourceTest {
     lateinit var dispatcher: CoroutineDispatcher
     lateinit var dataSource: NasaPicturesRemoteDataSource
 
-    @Before
-    fun setUp() {
-        Dispatchers.setMain(mainThreadSurrogate)
-    }
-
-    @After
-    fun tearDown() {
-        Dispatchers.resetMain() // reset the main dispatcher to the original Main dispatcher
-        mainThreadSurrogate.close()
-    }
 
     @Test
     fun shouldCallAPI() = runTest {
