@@ -1,9 +1,8 @@
 package com.driff.android.module.data.repository
 
-import com.driff.android.module.data.remote.datasource.NasaPicturesRemoteDataSource
-import com.driff.android.module.data.repository.entities.NasaPicture
+import com.driff.android.module.data.datasource.remote.NasaPicturesRemoteDataSource
+import com.driff.android.module.data.model.entity.NasaPicture
 import com.driff.android.module.data.utils.asExternalModel
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -21,26 +20,16 @@ class NasaPicturesRepository constructor (
             picturesMutex.withLock {
             picture?.takeUnless { refresh }
                     ?.let { Result.success(it) }
-            } ?: withContext(externalScope.coroutineContext) {
+            ?: withContext(externalScope.coroutineContext) {
                 remoteNasaPicturesDataSource.fetchPictureOfTheDay()
                     .map { it.asExternalModel() }
                     .onSuccess {
-                        safelyUpdateCache(it)
+                        picture = it
                     }
+                }
             }
-
         } catch (e: Exception) {
-            if (e is CancellationException)
-                throw e
-            else {
                 return Result.failure(e)
-            }
-        }
-    }
-
-    private suspend fun safelyUpdateCache(response: NasaPicture) {
-        picturesMutex.withLock {
-            picture = response
         }
     }
 }

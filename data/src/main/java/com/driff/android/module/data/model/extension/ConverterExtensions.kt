@@ -1,7 +1,7 @@
 package com.driff.android.module.data.utils
 
-import com.driff.android.module.data.remote.model.RemoteNasaPicture
-import com.driff.android.module.data.repository.entities.NasaPicture
+import com.driff.android.module.data.model.remote.RemoteNasaPicture
+import com.driff.android.module.data.model.entity.NasaPicture
 
 fun RemoteNasaPicture.asExternalModel() = NasaPicture(
     date = date,

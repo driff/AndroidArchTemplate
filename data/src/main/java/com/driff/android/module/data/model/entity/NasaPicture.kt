@@ -1,4 +1,4 @@
-package com.driff.android.module.data.repository.entities
+package com.driff.android.module.data.model.entity
 
 data class NasaPicture(
     val date: String,

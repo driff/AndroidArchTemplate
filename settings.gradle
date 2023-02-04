@@ -21,3 +21,4 @@ rootProject.name = "ModularTemplate"
 include ':app'
 include ':module'
 include ':catalogs:android'
+include ':data'

@@ -1,6 +1,6 @@
 package com.driff.android.module.data
 
-import com.driff.android.module.data.remote.model.RemoteNasaPicture
+import com.driff.android.module.data.model.remote.RemoteNasaPicture
 
 object RemoteDataDummies {
 
