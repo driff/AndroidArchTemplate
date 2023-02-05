@@ -1,4 +1,4 @@
-package com.driff.android.module.data.remote.model
+package com.driff.android.module.data.model.remote
 
 import kotlinx.serialization.SerialName
 

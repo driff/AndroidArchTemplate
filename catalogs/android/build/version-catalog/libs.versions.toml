@@ -6,7 +6,7 @@ format.version = "1.1"
 
 [versions]
 activity-compose-version = "1.5.1"
-agp-version = "7.4.0"
+agp-version = "7.4.1"
 android-app-compat-version = "1.6.0"
 android-core-version = "1.9.0"
 androidx-test-core-version = "1.5.0"
@@ -24,7 +24,8 @@ dagger-version = "2.44.2"
 espresso-core-version = "3.5.1"
 junit-ext-version = "1.1.5"
 junit-version = "4.13.2"
-kotlin-version = "1.8.0"
+kotlin-serialization-version = "1.4.1"
+kotlin-version = "1.8.10"
 ktor-version = "2.2.2"
 lifecycle-version = "2.5.1"
 material-version = "1.6.1"
@@ -70,6 +71,7 @@ di-hilt-compiler = {group = "com.google.dagger", name = "hilt-compiler", version
 kotlin-logging = {group = "io.github.microutils", name = "kotlin-logging-jvm", version = "2.1.23" }
 kotlin-reflect = {group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin-version" }
 kotlin-stdlib = {group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin-version" }
+kotlinx-serialization = {group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization-version" }
 ktor-android = {group = "io.ktor", name = "ktor-client-android", version.ref = "ktor-version" }
 ktor-client-res = {group = "io.ktor", name = "ktor-client-resources", version.ref = "ktor-version" }
 ktor-content-negotiation = {group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor-version" }
@@ -115,7 +117,7 @@ android-testing = ["tests-core", "tests-core-ktx", "tests-ktor-client", "tests-u
 android-testing-extra = ["tests-ui-tooling", "tests-ui-manifest"]
 hilt-testing = ["tests-hilt-android"]
 kotlin-testing-tools = ["cashapp-turbine", "tests-mockk", "tests-mockk-jvm", "tests-coroutines", "log4j-test"]
-kotlin-tooling = ["kotlin-reflect", "kotlin-stdlib", "kotlin-logging"]
+kotlin-tooling = ["kotlin-reflect", "kotlin-stdlib", "kotlin-logging", "kotlinx-serialization"]
 ktor-android = ["ktor-core", "ktor-okhttp", "ktor-android", "ktor-logging", "ktor-content-negotiation", "ktor-serialization", "ktor-client-res"]
 
 [plugins]
@@ -126,4 +128,5 @@ kotlin-allopen = {id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kot
 kotlin-android = {id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
 kotlin-kapt = {id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin-version" }
 kotlin-lang = {id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }
+kotlin-serialization = {id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-version" }
 

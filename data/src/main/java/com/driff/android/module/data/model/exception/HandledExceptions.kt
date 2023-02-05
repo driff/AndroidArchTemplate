@@ -1,4 +1,4 @@
-package com.driff.android.module.data.exception
+package com.driff.android.module.data.model.exception
 
 class EmptyBodyException(msg: String = ""): Exception(msg)
 

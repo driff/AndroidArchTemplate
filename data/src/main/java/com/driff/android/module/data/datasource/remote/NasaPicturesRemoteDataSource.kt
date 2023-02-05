@@ -1,7 +1,7 @@
-package com.driff.android.module.data.remote.datasource
+package com.driff.android.module.data.datasource.remote
 
 import com.driff.android.module.data.api.NasaPicturesApi
-import com.driff.android.module.data.remote.model.RemoteNasaPicture
+import com.driff.android.module.data.model.remote.RemoteNasaPicture
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
