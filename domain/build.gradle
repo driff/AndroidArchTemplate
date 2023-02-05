@@ -3,6 +3,8 @@ plugins {
     alias libs.plugins.kotlin.android
 }
 
+apply from: file("$rootDir/jacoco.gradle")
+
 android {
     namespace 'com.driff.android.module.domain'
     compileSdk 33
@@ -19,6 +21,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            testCoverageEnabled false
         }
     }
     compileOptions {

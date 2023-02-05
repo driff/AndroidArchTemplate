@@ -12,3 +12,8 @@ plugins {
 //    id 'org.jetbrains.kotlin.android' version '1.7.21' apply false
 //    id 'org.jetbrains.kotlin.jvm' version '1.7.21' apply false
 }
+
+allprojects {
+    apply plugin: 'jacoco'
+//    apply from: file("$rootDir/jacoco.gradle")
+}

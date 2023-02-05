@@ -3,6 +3,7 @@ plugins {
     alias libs.plugins.kotlin.android
     alias libs.plugins.kotlin.serialization
 }
+apply from: file("$rootDir/jacoco.gradle")
 
 android {
     namespace 'com.driff.android.module.data'
@@ -20,6 +21,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            testCoverageEnabled false
         }
     }
     compileOptions {
