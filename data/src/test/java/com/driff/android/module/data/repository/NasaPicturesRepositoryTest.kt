@@ -30,7 +30,7 @@ class RemoteNasaPicturesRepositoryTest {
     @RelaxedMockK
     lateinit var dataSource: NasaPicturesRemoteDataSource
 
-    private lateinit var repository: com.driff.android.module.data.repository.NasaPicturesRepository
+    private lateinit var repository: NasaPicturesRepository
 
     @Before
     fun setup() {

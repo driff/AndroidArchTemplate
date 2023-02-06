@@ -1,4 +1,4 @@
-package com.driff.android.module.data.utils
+package com.driff.android.module.data.model.mappers
 
 import com.driff.android.module.data.model.remote.RemoteNasaPicture
 import com.driff.android.module.data.model.entity.NasaPicture

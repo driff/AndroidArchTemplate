@@ -2,7 +2,7 @@ package com.driff.android.module.data.repository
 
 import com.driff.android.module.data.datasource.remote.NasaPicturesRemoteDataSource
 import com.driff.android.module.data.model.entity.NasaPicture
-import com.driff.android.module.data.utils.asExternalModel
+import com.driff.android.module.data.model.mappers.asExternalModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
