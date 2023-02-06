@@ -6,10 +6,14 @@ import com.driff.android.module.domain.Dummies.SuccessNasaPicture
 import com.driff.android.module.domain.MainDispatcherRule
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.coVerifyOrder
+import io.mockk.coVerifySequence
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit4.MockKRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Before
@@ -35,10 +39,8 @@ class GetNasaPictureOfDayUseCaseTest {
     @Before
     fun setup() {
         testScope = TestScope(mainDispatcherRule.testDispatcher)
-        coEvery { repository.fetchNasaPictureOfTheDay() }coAnswers {
-            Result.success(SuccessNasaPicture)
-        }
-        useCase = GetNasaPictureOfDayUseCase(repository)
+        coEvery { repository.fetchNasaPictureOfTheDay(any()) } returns Result.success(SuccessNasaPicture)
+        useCase = GetNasaPictureOfDayUseCase(repository, mainDispatcherRule.testDispatcher)
     }
 
     @Test
@@ -61,14 +63,19 @@ class GetNasaPictureOfDayUseCaseTest {
     }
 
     @Test
-    fun shouldRefreshWhenDateChanges() = runTest {
+    fun shouldDispatchRefreshToRepository() = runTest(StandardTestDispatcher()) {
         // GIVEN use case instance
         // WHEN it is invoked AND response is success
-        val result = useCase()
-        // AND date is current day
+        // AND refresh is true
+        useCase(refresh = true)
+        // AND is invoked with refresh false
+        useCase(refresh = false)
         // THEN it should return request with reset false
-        assertTrue(result.isSuccess)
-        assertEquals(SuccessNasaPicture.url, result.getOrNull()?.url)
+        advanceUntilIdle()
+        coVerifyOrder {
+            repository.fetchNasaPictureOfTheDay(refresh = true)
+            repository.fetchNasaPictureOfTheDay(refresh = false)
+        }
     }
 
 }
