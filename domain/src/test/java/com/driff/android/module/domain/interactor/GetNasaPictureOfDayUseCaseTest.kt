@@ -1,5 +1,6 @@
 package com.driff.android.module.domain.interactor
 
+import com.driff.android.module.data.repository.ImageLoaderRepository
 import com.driff.android.module.data.repository.NasaPicturesRepository
 import com.driff.android.module.domain.Dummies.SuccessNasaPicture
 import com.driff.android.module.domain.MainDispatcherRule
@@ -32,13 +33,18 @@ class GetNasaPictureOfDayUseCaseTest {
     @RelaxedMockK
     lateinit var repository: NasaPicturesRepository
 
+    @RelaxedMockK
+    lateinit var imageRepository: ImageLoaderRepository
+
     lateinit var useCase: GetNasaPictureOfDayUseCase
 
     @Before
     fun setup() {
         testScope = TestScope(mainDispatcherRule.testDispatcher)
         coEvery { repository.fetchNasaPictureOfTheDay(any()) } returns Result.success(SuccessNasaPicture)
-        useCase = GetNasaPictureOfDayUseCase(repository, mainDispatcherRule.testDispatcher)
+        coEvery { imageRepository.getImage(any()) } returns Result.success(byteArrayOf(1, 2, 3, 4, 5))
+
+        useCase = GetNasaPictureOfDayUseCase(mainDispatcherRule.testDispatcher, repository, imageRepository)
     }
 
     @Test
@@ -57,7 +63,7 @@ class GetNasaPictureOfDayUseCaseTest {
         val result = useCase()
         // THEN it should return Success Result with a picture of day object
         assertTrue(result.isSuccess)
-        assertEquals(SuccessNasaPicture.url, result.getOrNull()?.url)
+        assertEquals(SuccessNasaPicture.title, result.getOrNull()?.title)
     }
 
     @Test
@@ -74,6 +80,17 @@ class GetNasaPictureOfDayUseCaseTest {
             repository.fetchNasaPictureOfTheDay(refresh = true)
             repository.fetchNasaPictureOfTheDay(refresh = false)
         }
+    }
+
+    @Test
+    fun shouldCallImageRepository() = runTest {
+        // GIVEN usecase instance
+        // WHEN it is invoked
+        // AND response is success
+        useCase(refresh = false)
+        advanceUntilIdle()
+        // THEN it should invoke image repository
+        coVerify { imageRepository.getImage(any()) }
     }
 
 }
