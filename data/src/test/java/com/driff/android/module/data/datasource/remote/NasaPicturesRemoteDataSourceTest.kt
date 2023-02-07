@@ -1,9 +1,10 @@
-package com.driff.android.module.data.remote.datasource
+package com.driff.android.module.data.datasource.remote
 
 import com.driff.android.module.BaseTestSetup
+import com.driff.android.module.MainDispatcherRule
 import com.driff.android.module.data.RemoteDataDummies.successRemoteNasaPicture
+import com.driff.android.module.data.api.NasaPicturesApi
 import com.driff.android.module.data.model.exception.BadRequestException
-import com.driff.android.module.data.datasource.remote.NasaPicturesRemoteDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
@@ -20,8 +21,11 @@ class NasaPicturesRemoteDataSourceTest: BaseTestSetup() {
     @get:Rule
     val mockkRule = MockKRule(this)
 
+    @get:Rule
+    val mainDispatcherRule = MainDispatcherRule()
+
     @RelaxedMockK
-    private lateinit var nasaApi: com.driff.android.module.data.api.NasaPicturesApi
+    private lateinit var nasaApi: NasaPicturesApi
 
     lateinit var dispatcher: CoroutineDispatcher
     lateinit var dataSource: NasaPicturesRemoteDataSource

@@ -37,6 +37,7 @@ dependencies {
     implementation libs.bundles.kotlin.tooling
     implementation libs.bundles.ktor.android
     implementation project(':domain')
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation libs.bundles.kotlin.testing.tools
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
