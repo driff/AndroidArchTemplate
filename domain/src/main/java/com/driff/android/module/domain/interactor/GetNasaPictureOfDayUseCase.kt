@@ -17,9 +17,7 @@ class GetNasaPictureOfDayUseCase(
         withContext(defaultDispatcher) {
             repository.fetchNasaPictureOfTheDay(refresh)
                 .mapCatching { response ->
-                    response.asExternalModel().copy(
-                        imageByteArray = getImageFromUrl(response.url)
-                    )
+                    response.asExternalModel().copy(imageByteArray = getImageFromUrl(response.url))
                 }
         }
 

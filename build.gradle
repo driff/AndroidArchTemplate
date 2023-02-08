@@ -17,3 +17,4 @@ allprojects {
     apply plugin: 'jacoco'
 //    apply from: file("$rootDir/jacoco.gradle")
 }
+
