@@ -41,5 +41,5 @@ dependencies {
     implementation libs.bundles.kotlin.tooling
     testImplementation libs.bundles.kotlin.testing.tools
     testImplementation 'junit:junit:4.13.2'
-    implementation project(':data')
+
 }

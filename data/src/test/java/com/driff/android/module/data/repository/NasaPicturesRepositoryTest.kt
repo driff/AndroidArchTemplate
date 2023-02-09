@@ -17,7 +17,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class RemoteNasaPicturesRepositoryTest {
+class RemoteModelNasaPicturesRepositoryTest {
 
     @get:Rule
     val mockkRule = MockKRule(this)

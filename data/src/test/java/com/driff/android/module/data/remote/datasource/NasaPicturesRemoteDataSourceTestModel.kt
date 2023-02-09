@@ -15,7 +15,7 @@ import org.junit.*
 import org.junit.Assert.*
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
-class NasaPicturesRemoteDataSourceTest: BaseTestSetup() {
+class NasaPicturesRemoteDataSourceTestModel: BaseTestSetup() {
 
     @get:Rule
     val mockkRule = MockKRule(this)
