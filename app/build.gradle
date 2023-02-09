@@ -19,6 +19,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField "String", "NASA_API_KEY", "${System.getenv("NASA_API_KEY")}"
+//        buildConfigField "String", "NASA_API_URL", "${System.getenv("NASA_API_URL")}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -49,4 +50,5 @@ dependencies {
     testImplementation libs.bundles.kotlin.testing.tools
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation project(':data')
 }

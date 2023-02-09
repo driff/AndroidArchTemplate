@@ -56,9 +56,11 @@ catalog {
         library("kotlin-stdlib", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8").versionRef("kotlin_version")
         library("kotlinx-serialization", "org.jetbrains.kotlinx", "kotlinx-serialization-json").versionRef("kotlin_serialization_version")
         library("kotlin-logging", "io.github.microutils:kotlin-logging-jvm:2.1.23")
+        library("coroutines-core", "org.jetbrains.kotlinx", "kotlinx-coroutines-core").versionRef("coroutines_version")
 
         //Android
         library("android-multidex", "androidx.multidex", "multidex").versionRef("multidex_version")
+        library("coroutines-android", "org.jetbrains.kotlinx", "kotlinx-coroutines-android").versionRef("coroutines_version")
         library("androidx-core", "androidx.core", "core-ktx").versionRef("android_core_version")
         library("androidx-app-compat", "androidx.appcompat", "appcompat").versionRef("android_app_compat_version")
         library("androidx-app-compat-res", "androidx.appcompat", "appcompat-resources").versionRef("android_app_compat_version")
@@ -135,7 +137,8 @@ catalog {
                 "kotlin-reflect",
                 "kotlin-stdlib",
                 "kotlin-logging",
-                "kotlinx-serialization"
+                "kotlinx-serialization",
+                "coroutines-core"
         ])
 
         bundle("android-hilt", ["di-hilt-android"])
@@ -172,6 +175,7 @@ catalog {
         bundle("android-base", [
                 "android-multidex",
                 "androidx-core",
+                "coroutines-android",
                 "androidx-app-compat",
                 "androidx-app-compat-res",
                 "android-lifecycle-savedstate",

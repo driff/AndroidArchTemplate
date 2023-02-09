@@ -13,9 +13,6 @@ import com.driff.android.module.R
  * create an instance of this fragment.
  */
 class PicturesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +39,6 @@ class PicturesFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PicturesFragment().apply {
-                arguments = Bundle().apply {
-                }
-            }
+        fun newInstance() = PicturesFragment()
     }
 }

@@ -66,6 +66,8 @@ compose-runtime-livedata = {group = "androidx.compose.runtime", name = "runtime-
 compose-ui = {group = "androidx.compose.ui", name = "ui", version.ref = "compose-version" }
 compose-ui-preview = {group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "compose-version" }
 compose-ui-tooling = {group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose-version" }
+coroutines-android = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines-version" }
+coroutines-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines-version" }
 di-hilt-android = {group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-version" }
 di-hilt-compiler = {group = "com.google.dagger", name = "hilt-compiler", version.ref = "dagger-version" }
 kotlin-logging = {group = "io.github.microutils", name = "kotlin-logging-jvm", version = "2.1.23" }
@@ -106,7 +108,7 @@ tests-ui-manifest = {group = "androidx.compose.ui", name = "ui-test-manifest", v
 tests-ui-tooling = {group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose-version" }
 
 [bundles]
-android-base = ["android-multidex", "androidx-core", "androidx-app-compat", "androidx-app-compat-res", "android-lifecycle-savedstate", "android-lifecycle-common", "android-navigation", "android-lifecycle-viewmodel", "android-lifecycle-livedata", "android-lifecycle", "androidx-arch-core-common", "androidx-arch-core-runtime"]
+android-base = ["android-multidex", "androidx-core", "coroutines-android", "androidx-app-compat", "androidx-app-compat-res", "android-lifecycle-savedstate", "android-lifecycle-common", "android-navigation", "android-lifecycle-viewmodel", "android-lifecycle-livedata", "android-lifecycle", "androidx-arch-core-common", "androidx-arch-core-runtime"]
 android-compose = ["compose-constraint-layout", "compose-ui", "compose-material", "compose-fundation", "compose-runtime", "compose-ui-preview", "compose-runtime-livedata", "android-compose-activity", "android-lifecycle-compose"]
 android-compose-debug = ["compose-ui-tooling"]
 android-hilt = ["di-hilt-android"]
@@ -117,7 +119,7 @@ android-testing = ["tests-core", "tests-core-ktx", "tests-ktor-client", "tests-u
 android-testing-extra = ["tests-ui-tooling", "tests-ui-manifest"]
 hilt-testing = ["tests-hilt-android"]
 kotlin-testing-tools = ["cashapp-turbine", "tests-mockk", "tests-mockk-jvm", "tests-coroutines", "log4j-test"]
-kotlin-tooling = ["kotlin-reflect", "kotlin-stdlib", "kotlin-logging", "kotlinx-serialization"]
+kotlin-tooling = ["kotlin-reflect", "kotlin-stdlib", "kotlin-logging", "kotlinx-serialization", "coroutines-core"]
 ktor-android = ["ktor-core", "ktor-okhttp", "ktor-android", "ktor-logging", "ktor-content-negotiation", "ktor-serialization", "ktor-client-res"]
 
 [plugins]
