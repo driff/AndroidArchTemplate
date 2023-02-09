@@ -1,8 +1,10 @@
 package com.driff.android.module.data.repository
 
 import com.driff.android.module.data.datasource.remote.NasaPicturesRemoteDataSource
-import com.driff.android.module.data.model.entity.NasaPicture
-import com.driff.android.module.data.model.mappers.asExternalModel
+import com.driff.android.module.data.model.NasaPictureModel
+import com.driff.android.module.data.model.toEntity
+import com.driff.android.module.data.model.toModel
+import com.driff.android.module.domain.entity.PictureOfDayEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -13,18 +15,18 @@ class NasaPicturesRepository constructor (
     private val externalScope: CoroutineScope
 ) {
     private val picturesMutex = Mutex()
-    private var picture: NasaPicture? = null
+    private var picture: NasaPictureModel? = null
 
-    suspend fun fetchNasaPictureOfTheDay(refresh: Boolean = false): Result<NasaPicture> {
+    suspend fun fetchNasaPictureOfTheDay(refresh: Boolean = false): Result<PictureOfDayEntity> {
         return try {
             picturesMutex.withLock {
             picture?.takeUnless { refresh }
-                    ?.let { Result.success(it) }
+                    ?.let { Result.success(it.toEntity()) }
             ?: withContext(externalScope.coroutineContext) {
                 remoteNasaPicturesDataSource.fetchPictureOfTheDay()
-                    .map { it.asExternalModel() }
+                    .map { it.toEntity() }
                     .onSuccess {
-                        picture = it
+                        picture = it.toModel()
                     }
                 }
             }

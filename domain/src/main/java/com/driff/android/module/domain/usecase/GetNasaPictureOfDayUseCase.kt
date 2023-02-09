@@ -1,8 +1,6 @@
-package com.driff.android.module.domain.interactor
+package com.driff.android.module.domain.usecase
 
-
-import com.driff.android.module.domain.model.asExternalModel
-import com.driff.android.module.domain.model.entity.PictureOfDayEntity
+import com.driff.android.module.domain.entity.PictureOfDayEntity
 import com.driff.android.module.domain.repository.INasaPicturesRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

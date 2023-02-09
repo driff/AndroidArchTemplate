@@ -1,13 +1,12 @@
 package com.driff.android.module.domain.interactor
 
-import com.driff.android.module.data.model.entity.NasaPicture
 import com.driff.android.module.data.repository.NasaPicturesRepository
 import com.driff.android.module.domain.Dummies.SuccessNasaPicture
 import com.driff.android.module.domain.MainDispatcherRule
+import com.driff.android.module.domain.usecase.GetNasaPictureOfDayUseCase
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.coVerifyOrder
-import io.mockk.coVerifySequence
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit4.MockKRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,7 +20,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class GetNasaPictureOfDayUseCaseTest {
+class GetNasaPictureModelOfDayUseCaseTest {
 
     @get:Rule
     val mockkRule = MockKRule(this)

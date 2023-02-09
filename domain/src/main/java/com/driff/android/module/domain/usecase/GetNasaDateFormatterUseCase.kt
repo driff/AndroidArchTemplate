@@ -1,4 +1,4 @@
-package com.driff.android.module.domain.interactor
+package com.driff.android.module.domain.usecase
 
 import java.text.SimpleDateFormat
 import java.util.*

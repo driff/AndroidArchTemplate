@@ -1,4 +1,4 @@
-package com.driff.android.module.domain.model.entity
+package com.driff.android.module.domain.entity
 
 data class PictureOfDayEntity(
     val date: String,

@@ -1,9 +1,9 @@
-package com.driff.android.module.data.datasource.remote
+package com.driff.android.module.data.datasource.local
 
 import com.driff.android.module.data.model.NasaPictureModel
 import kotlinx.serialization.SerialName
 
-data class NasaPictureRemoteModel(
+data class NasaPictureLocalModel(
 	val date: String,
 	val copyright: String,
 	@SerialName("media_type")
@@ -16,7 +16,7 @@ data class NasaPictureRemoteModel(
 	val url: String
 )
 
-fun NasaPictureRemoteModel.toModel() = NasaPictureModel(
+fun NasaPictureLocalModel.toModel() = NasaPictureModel(
 	date = date,
 	mediaType = mediaType,
 	hdurl = hdurl,
@@ -24,7 +24,3 @@ fun NasaPictureRemoteModel.toModel() = NasaPictureModel(
 	title = title,
 	url = url,
 )
-
-fun List<NasaPictureRemoteModel>.toListModel() = this.map {
-	it.toModel()
-}
