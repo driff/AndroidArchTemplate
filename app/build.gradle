@@ -18,8 +18,9 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        buildConfigField "String", "NASA_API_KEY", "${System.getenv("NASA_API_KEY")}"
-//        buildConfigField "String", "NASA_API_URL", "${System.getenv("NASA_API_URL")}"
+//        resValue("String", "nasa_api_key", System.getenv("NASA_API_KEY"))
+        buildConfigField "String", "NASA_API_URL", "\"${System.getenv("NASA_API_URL")}\""
+        buildConfigField "String", "NASA_API_KEY", "\"${System.getenv("NASA_API_KEY")}\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -39,6 +40,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    viewBinding {
+        enabled = true
+    }
+
 }
 
 dependencies {

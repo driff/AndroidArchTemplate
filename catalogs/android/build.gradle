@@ -14,6 +14,7 @@ catalog {
         version("multidex_version", "2.0.1")
         version("android_core_version", "1.9.0")
         version("android_app_compat_version", "1.6.0")
+        version("android_fragment_ktx_version", "1.5.5")
         version("lifecycle_version", "2.5.1")
         version("agp_version", "7.4.1")
         version("navigation_version", "2.5.3")
@@ -24,7 +25,7 @@ catalog {
         version("activity_compose_version", "1.5.1")
         version("compose_constraint_version", "1.0.1")
         // Material
-        version("material_version", "1.6.1")
+        version("material_version", "1.8.0")
         version("compose_material_version", "1.3.1")
         version("compose_material3_version", "1.0.1")
         // utils
@@ -61,6 +62,7 @@ catalog {
         //Android
         library("android-multidex", "androidx.multidex", "multidex").versionRef("multidex_version")
         library("coroutines-android", "org.jetbrains.kotlinx", "kotlinx-coroutines-android").versionRef("coroutines_version")
+        library("fragment-ktx", "androidx.fragment", "fragment-ktx").versionRef("android_fragment_ktx_version")
         library("androidx-core", "androidx.core", "core-ktx").versionRef("android_core_version")
         library("androidx-app-compat", "androidx.appcompat", "appcompat").versionRef("android_app_compat_version")
         library("androidx-app-compat-res", "androidx.appcompat", "appcompat-resources").versionRef("android_app_compat_version")
@@ -152,7 +154,6 @@ catalog {
                 "ktor-client-res"
         ])
         bundle ("android-material-design-compose", [
-                "android-material",
                 "android-material3",
                 "android-material3-windows",
         ])
@@ -175,6 +176,8 @@ catalog {
         bundle("android-base", [
                 "android-multidex",
                 "androidx-core",
+                "android-material",
+                "fragment-ktx",
                 "coroutines-android",
                 "androidx-app-compat",
                 "androidx-app-compat-res",

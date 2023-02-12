@@ -12,7 +12,9 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import javax.inject.Inject
 
-class NasaApi @Inject constructor(private val client: HttpClient): NasaPicturesApi {
+class NasaApi @Inject constructor(
+    private val client: HttpClient
+): NasaPicturesApi {
 
     override suspend fun fetchPictureOfTheDay(): RemoteNasaPicture {
         client.use {

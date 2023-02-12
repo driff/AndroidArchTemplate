@@ -9,6 +9,7 @@ activity-compose-version = "1.5.1"
 agp-version = "7.4.1"
 android-app-compat-version = "1.6.0"
 android-core-version = "1.9.0"
+android-fragment-ktx-version = "1.5.5"
 androidx-test-core-version = "1.5.0"
 androidx-test-runner-version = "1.5.2"
 arch-core-version = "2.1.0"
@@ -28,7 +29,7 @@ kotlin-serialization-version = "1.4.1"
 kotlin-version = "1.8.10"
 ktor-version = "2.2.2"
 lifecycle-version = "2.5.1"
-material-version = "1.6.1"
+material-version = "1.8.0"
 mockk-version = "1.13.4"
 multidex-version = "2.0.1"
 navigation-version = "2.5.3"
@@ -70,6 +71,7 @@ coroutines-android = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutine
 coroutines-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines-version" }
 di-hilt-android = {group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-version" }
 di-hilt-compiler = {group = "com.google.dagger", name = "hilt-compiler", version.ref = "dagger-version" }
+fragment-ktx = {group = "androidx.fragment", name = "fragment-ktx", version.ref = "android-fragment-ktx-version" }
 kotlin-logging = {group = "io.github.microutils", name = "kotlin-logging-jvm", version = "2.1.23" }
 kotlin-reflect = {group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin-version" }
 kotlin-stdlib = {group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin-version" }
@@ -108,13 +110,13 @@ tests-ui-manifest = {group = "androidx.compose.ui", name = "ui-test-manifest", v
 tests-ui-tooling = {group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose-version" }
 
 [bundles]
-android-base = ["android-multidex", "androidx-core", "coroutines-android", "androidx-app-compat", "androidx-app-compat-res", "android-lifecycle-savedstate", "android-lifecycle-common", "android-navigation", "android-lifecycle-viewmodel", "android-lifecycle-livedata", "android-lifecycle", "androidx-arch-core-common", "androidx-arch-core-runtime"]
+android-base = ["android-multidex", "androidx-core", "android-material", "fragment-ktx", "coroutines-android", "androidx-app-compat", "androidx-app-compat-res", "android-lifecycle-savedstate", "android-lifecycle-common", "android-navigation", "android-lifecycle-viewmodel", "android-lifecycle-livedata", "android-lifecycle", "androidx-arch-core-common", "androidx-arch-core-runtime"]
 android-compose = ["compose-constraint-layout", "compose-ui", "compose-material", "compose-fundation", "compose-runtime", "compose-ui-preview", "compose-runtime-livedata", "android-compose-activity", "android-lifecycle-compose"]
 android-compose-debug = ["compose-ui-tooling"]
 android-hilt = ["di-hilt-android"]
 android-junit-testing = ["tests-junit-ktx", "tests-junit", "tests-ext-junit", "tests-ext-junitktx", "tests-ui-junit4"]
 android-jvm-testing = ["tests-robolectric"]
-android-material-design-compose = ["android-material", "android-material3", "android-material3-windows"]
+android-material-design-compose = ["android-material3", "android-material3-windows"]
 android-testing = ["tests-core", "tests-core-ktx", "tests-ktor-client", "tests-ui", "tests-rules", "tests-runner", "android-lifecycle-testing", "tests-spresso-contrib", "tests-spresso-resource", "tests-spresso-idling-net", "tests-spresso-idling", "tests-spresso-core", "androidx-arch-core-testing"]
 android-testing-extra = ["tests-ui-tooling", "tests-ui-manifest"]
 hilt-testing = ["tests-hilt-android"]

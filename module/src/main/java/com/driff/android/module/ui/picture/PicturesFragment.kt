@@ -5,15 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.driff.android.module.R
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.driff.android.module.databinding.FragmentPicturesBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A simple [Fragment] subclass.
  * Use the [PicturesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class PicturesFragment : Fragment() {
 
+    private lateinit var binding: FragmentPicturesBinding
+    private val viewModel: PicturesViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -23,9 +29,16 @@ class PicturesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pictures, container, false)
+        return FragmentPicturesBinding.inflate(inflater, container, false).apply {
+            binding = this
+        }.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
     }
 
     companion object {
