@@ -44,7 +44,9 @@ android {
     viewBinding {
         enabled = true
     }
-
+    hilt {
+        enableAggregatingTask = true
+    }
 }
 
 dependencies {
@@ -52,9 +54,13 @@ dependencies {
     implementation libs.bundles.android.hilt
     implementation libs.bundles.kotlin.tooling
     implementation libs.bundles.ktor.android
+    implementation 'androidx.core:core-ktx:+'
+    implementation 'androidx.core:core-ktx:+'
     kapt libs.di.hilt.compiler
     testImplementation libs.bundles.kotlin.testing.tools
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation project(':data')
+    implementation project(':domain')
+    implementation project(':module')
 }

@@ -1,6 +1,7 @@
 package com.driff.android.module.ui.picture
 
 import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -29,6 +30,7 @@ class PicturesViewModel @Inject constructor(
 
     fun getPictures(refresh: Boolean) {
         viewModelScope.launch {
+            Log.d(this::class.simpleName, "Coroutine name: ${coroutineContext.isActive}")
             pictureOfDayUseCase(refresh).mapCatching {
                 val bitmap = it.imageByteArray?.let { img ->
                     async {

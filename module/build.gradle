@@ -1,6 +1,8 @@
 plugins {
     alias libs.plugins.android.lib
     alias libs.plugins.kotlin.android
+    alias libs.plugins.hilt.android
+    alias libs.plugins.kotlin.kapt
     id "org.jetbrains.kotlin.plugin.parcelize"
 }
 
@@ -32,6 +34,9 @@ android {
     viewBinding {
         enabled = true
     }
+    hilt {
+        enableAggregatingTask = true
+    }
 }
 
 dependencies {
@@ -40,8 +45,11 @@ dependencies {
     implementation libs.bundles.android.hilt
     implementation libs.bundles.kotlin.tooling
     implementation libs.bundles.ktor.android
+    kapt libs.di.hilt.compiler
     implementation project(':domain')
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.core:core-ktx:+'
+    implementation 'androidx.core:core-ktx:+'
     testImplementation libs.bundles.kotlin.testing.tools
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

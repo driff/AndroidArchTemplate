@@ -6,9 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.driff.android.module.databinding.FragmentPicturesBinding
+import com.driff.android.module.ui.model.PicturesCatalogUiState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
@@ -22,8 +27,6 @@ class PicturesFragment : Fragment() {
     private val viewModel: PicturesViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
     }
 
     override fun onCreateView(
@@ -36,9 +39,40 @@ class PicturesFragment : Fragment() {
         }.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.picturesCatalogUiStateFlow
+                        .filter { it.isLoading }
+                        .collect(::onLoading)
+                }
+                launch {
+                    viewModel.picturesCatalogUiStateFlow
+                        .filter { !it.isLoading && it.errorMessage.isNullOrEmpty() }
+                        .collect(::onSuccess)
+                }
+
+            }
+        }
+    }
+
+
     override fun onStart() {
         super.onStart()
+        viewModel.getPictures(false)
+        binding.btnRefresh.setOnClickListener {
+            viewModel.getPictures(true)
+        }
+    }
 
+    private fun onLoading(state: PicturesCatalogUiState) {
+
+    }
+
+    private fun onSuccess(state: PicturesCatalogUiState) {
+        binding.imageView.setImageBitmap(state.imageItem.image)
     }
 
     companion object {

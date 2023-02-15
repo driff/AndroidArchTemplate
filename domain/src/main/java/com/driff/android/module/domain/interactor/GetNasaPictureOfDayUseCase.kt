@@ -1,12 +1,11 @@
 package com.driff.android.module.domain.interactor
 
+import android.util.Log
 import com.driff.android.module.data.repository.ImageLoaderRepository
 import com.driff.android.module.data.repository.NasaPicturesRepository
 import com.driff.android.module.domain.model.asExternalModel
 import com.driff.android.module.domain.model.entity.PictureOfDay
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class GetNasaPictureOfDayUseCase(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
@@ -15,13 +14,23 @@ class GetNasaPictureOfDayUseCase(
 ) {
     suspend operator fun invoke(refresh: Boolean = false): Result<PictureOfDay> =
         withContext(defaultDispatcher) {
+            Log.d(this::class.simpleName, "Coroutine name: ${coroutineContext.isActive}")
             repository.fetchNasaPictureOfTheDay(refresh)
-                .mapCatching { response ->
-                    response.asExternalModel().copy(imageByteArray = getImageFromUrl(response.url))
+                .mapCatching {
+                    val image = async { imageLoaderRepository.getImage(it.url) }
+                    image.await().let { byteArray ->
+                        it.asExternalModel(byteArray.getOrNull())
+                    }
+                }
+                .onFailure {
+                    Log.e(this@GetNasaPictureOfDayUseCase::class.simpleName, it.cause.toString())
+                    Log.e(this@GetNasaPictureOfDayUseCase::class.simpleName, "Coroutine name: ${coroutineContext[CoroutineName]}")
+                    Log.e(GetNasaPictureOfDayUseCase::class.simpleName, "${it.message.orEmpty()} - ${it.cause}")
                 }
         }
 
-    private suspend fun getImageFromUrl(url: String): ByteArray? = withContext(defaultDispatcher) {
-        imageLoaderRepository.getImage(url).getOrNull()
-    }
+//    private suspend fun getImageFromUrl(url: String): ByteArray? =
+//        .fold(
+//            {it}, {null}
+//        )
 }

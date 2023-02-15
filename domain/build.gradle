@@ -39,6 +39,8 @@ dependencies {
 
     implementation libs.bundles.android.base
     implementation libs.bundles.kotlin.tooling
+    implementation 'androidx.core:core-ktx:+'
+    implementation 'androidx.core:core-ktx:+'
     testImplementation libs.bundles.kotlin.testing.tools
     testImplementation 'junit:junit:4.13.2'
     implementation project(':data')
