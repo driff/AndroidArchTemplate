@@ -9,7 +9,8 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
 class NasaPicturesRepository constructor (
-    private val remoteNasaPicturesDataSource: NasaPicturesRemoteDataSource
+    private val remoteNasaPicturesDataSource: NasaPicturesRemoteDataSource,
+    private val externalScope: CoroutineScope
 ) {
     private val picturesMutex = Mutex()
     private var picture: NasaPicture? = null
@@ -19,19 +20,14 @@ class NasaPicturesRepository constructor (
             picturesMutex.withLock {
             picture?.takeUnless { refresh }
                     ?.let { Result.success(it) }
-            ?: coroutineScope {
-                Log.d(this@NasaPicturesRepository::class.simpleName, "Coroutine isActive: ${coroutineContext.isActive}")
-                Log.d(this@NasaPicturesRepository::class.simpleName, "scope is active: ${coroutineContext.isActive}")
+            } ?: withContext(externalScope.coroutineContext) {
                 remoteNasaPicturesDataSource.fetchPictureOfTheDay()
                     .map { it.asExternalModel() }
                     .onSuccess {
                         picture = it
                     }
                 }
-            }
         } catch (e: Exception) {
-            Log.e(this@NasaPicturesRepository::class.simpleName, e.cause.toString())
-            Log.e(this@NasaPicturesRepository::class.simpleName, e.message.orEmpty())
             return Result.failure(e)
         }
     }

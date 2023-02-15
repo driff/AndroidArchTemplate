@@ -1,6 +1,6 @@
 package com.driff.android.modulartemplate.di
 
-import com.driff.android.modulartemplate.scope.RepositoryScope
+import com.driff.android.modulartemplate.providers.RepositoryScope
 import com.driff.android.module.data.api.ImageLoaderApi
 import com.driff.android.module.data.api.NasaPicturesApi
 import com.driff.android.module.data.datasource.remote.ImageRemoteDataSource
@@ -21,13 +21,13 @@ object DataModule {
     @Provides
     @Singleton
     fun provideNasaPicturesRepo(dataSource: NasaPicturesRemoteDataSource, repositoryScope: RepositoryScope) =
-        NasaPicturesRepository(dataSource)
+        NasaPicturesRepository(dataSource, repositoryScope)
 
 
     @Provides
     @Singleton
     fun provideImageLoaderRepo(dataSource: ImageRemoteDataSource, repositoryScope: RepositoryScope) =
-        ImageLoaderRepository(dataSource)
+        ImageLoaderRepository(repositoryScope, dataSource)
 
     @Provides
     fun provideImageDataSource(

@@ -1,4 +1,4 @@
-package com.driff.android.modulartemplate.scope
+package com.driff.android.modulartemplate.providers
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
